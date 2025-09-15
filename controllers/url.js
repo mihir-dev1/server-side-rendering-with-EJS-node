@@ -1,4 +1,4 @@
-const { nanoid } = require('nanoid');
+// const nanoid = require('nanoid');
 const URL = require('../models/url');
 
 async function handleGenerateNewShortURL(req, res) {
@@ -6,11 +6,12 @@ async function handleGenerateNewShortURL(req, res) {
     if (!body) {
         return res.status(400).json({ error: 'redirectURL is required' });
     }
-    const shortId = nanoid(8);
+    const shortId = Math.random().toString(36).substring(2, 8);
     const newURL = new URL({
         shortId,
         redirectURL: body.redirectURL,
-        visitHistory:[]
+        visitHistory:[],
+        createdBy: req.user._id
     });
     try {
         const savedURL = await newURL.save();
@@ -83,5 +84,6 @@ module.exports = {
     handleGenerateNewShortURL,
     handleGetAllURLs,
     handleNavigateToShortURL,
-    handleGetAnalytic
+    handleGetAnalytic,
+    handleDeleteAllURLs
 };

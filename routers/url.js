@@ -1,7 +1,7 @@
 const express = require('express');
 const  { handleGenerateNewShortURL,handleGetAllURLs, handleNavigateToShortURL, handleGetAnalytic} = require('../controllers/url');
 const router = express.Router();
-const URL = require('../models/url');
+// const URL = require('../models/url');
 
 // GET all URLs
 router.get('/', handleGetAllURLs)

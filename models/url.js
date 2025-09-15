@@ -19,7 +19,11 @@ const urlSchema = new mongoose.Schema({
             userAgent: String,
             ipAddress: String,
         }
-    ]
+    ],
+    createdBy: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User' 
+    }
 },{timestamps: true});
 
 const URL = mongoose.model('URL', urlSchema);
